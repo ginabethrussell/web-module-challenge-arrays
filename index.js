@@ -63,7 +63,8 @@ function addFlavor(flavor, flavorArr){
     return flavorArr;
 }
 
-// originalFlavors = addFlavor("Rainbow Sherbert", originalFlavors);
+originalFlavors = addFlavor("Rainbow Sherbert", originalFlavors);
+// console.log(originalFlavors);
 
 
 /* Task 3: Houston, we have a problem! There are now 32 flavors in the array! Your task is to remove an item from the end of the array. 
@@ -80,7 +81,7 @@ function removeLastFlavor(flavorArr){
     flavorArr.pop();
     return flavorArr;
 }
-// originalFlavors = removeLastFlavor(originalFlavors);
+originalFlavors = removeLastFlavor(originalFlavors);
 // console.log(originalFlavors);
 
 /* Task 4: Write a function that returns a flavor at a given index in the array.
@@ -115,8 +116,9 @@ function removeFlavorByName(flavorArr, flavorName){
     flavorArr.splice(flavIndex);
     return flavorArr;
 }
-// originalFlavors = removeFlavorByName(originalFlavors, 'Vanilla');
+originalFlavors = removeFlavorByName(originalFlavors, 'Vanilla');
 // console.log(originalFlavors);
+// console.log(originalFlavors.length);
 
 /* Task 6: With all of these changes going on, we don't want to lose track of the actual, original 31 flavors. Write a function called copy that makes a copy of the array. 
 
@@ -126,17 +128,28 @@ Your function should accept:
 
 and should return a new array that is identical to the old array. You can name the new array however you'd like. */
 
+// function copy(flavorArr, copyArr){
+//     const length = flavorArr.length;
+//     for(let i = 0; i < length; i++){
+//         copyArr.push(flavorArr[i]);
+//     }
+//     return copyArr;
+// }
+
+// simpler version, uses spread operator
 function copy(flavorArr, copyArr){
-    const length = flavorArr.length;
-    for(let i = 0; i < length; i++){
-        copyArr.push(flavorArr[i]);
-    }
+    copyArr = [...flavorArr];
     return copyArr;
 }
+let originalFlavorsCopy = [];
+originalFlavorsCopy = copy(originalFlavors, originalFlavorsCopy);
 
-// let originalFlavorsCopy = [];
-// originalFlavorsCopy = copy(originalFlavors, originalFlavorsCopy);
+//add new flavor to original to prove distinct copies
+originalFlavors.push("Bubble Gum");
+// console.log(originalFlavors);
 // console.log(originalFlavorsCopy);
+
+originalFlavors.pop()
 
 /* Task 7: July 7th is "World Chocolate Day" and Baskin Robins wants to create promotional materials highlighting all of their chocolate flavors. Write a function that checks every item in the array for a given string and returns a new array called filteredArray with just these values. Rather than hardcoding "chocolate" into your function, pass a string as a parameter, and invoke with the argument "chocolate". This way you could also filter for "Vanilla", "Sherbert", etc. when those holidays roll around.
 
